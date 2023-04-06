@@ -6,9 +6,21 @@ module.exports = buildSchema(`
     title: String!,
     body: String
   }
+
+  type AuthData {
+    token: String!,
+    id: String!
+  }
+
+  input LoginData {
+    email: String!,
+    password: String!
+  }
+
   type Query {
     hello: String,
-    news: News
+    news: News,
+    login(loginData: LoginData): AuthData
   }
 
   type Post {
@@ -23,7 +35,7 @@ module.exports = buildSchema(`
         body: String,
         tags: [String]
     }
-    
+
   type Mutation {
     addPost(post: PostInput): Post
   }
